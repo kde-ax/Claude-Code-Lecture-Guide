@@ -26,11 +26,22 @@ llm-wiki/
 │   ├── external/       ← MCP 등 외부 시스템(Slack, Calendar, Sheets) 입력
 │   └── articles|papers|transcripts|assets/
 ├── wiki/               ← LLM이 생성·유지하는 마크다운 지식베이스
-│   ├── entities|concepts|sources|synthesis/
-│   └── conversations/  ← Claude와의 대화 기록 (적재된 것만)
+│   ├── entities/       ← 사람·조직·제품·도구 (type)
+│   ├── concepts/       ← 개념·프레임워크·방법론 (type)
+│   ├── sources/        ← raw 의 각 원본별 요약 (type)
+│   ├── synthesis/      ← 가로지르는 종합 분석 (type)
+│   └── conversations/  ← Claude와의 대화 기록 (type)
+│       └─ 각 type 폴더는 area로 다시 분기:
+│          ├── AI/         (LLM, ML, 트랜스포머, 임베딩 등)
+│          ├── 자동화/      (n8n, 워크플로우, RPA, Slack봇 등)
+│          ├── CCFM-내부/   (사내 프로젝트·인물·정책·회의)
+│          ├── 메타-위키/   (위키 운영, 카파시 패턴, 클리퍼 템플릿)
+│          └── 도구/        (Obsidian, Claude Code, Firebase, SaaS)
 ├── Clippings/          ← Obsidian Web Clipper 기본 저장 폴더 (raw 와 동급)
 └── CLAUDE.md           ← 이 파일 (스키마)
 ```
+
+**type × area 2축 분류**: 모든 wiki 페이지는 `wiki/{type}/{area}/[페이지명].md` 경로에 저장된다. type은 5종 고정, area는 시드 5개로 시작하고 필요 시 사용자 승인 받아 추가.
 
 각 폴더에는 별도의 `CLAUDE.md`가 있어 폴더별 세부 규칙을 정의한다. 전체 규칙이 충돌하면 **하위 폴더 규칙이 우선**한다.
 
