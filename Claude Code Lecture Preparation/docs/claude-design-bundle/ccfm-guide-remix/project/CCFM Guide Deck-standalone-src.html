@@ -1,0 +1,758 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<title>CCFM Guide Deck — Claude Code 시작 가이드</title>
+<meta name="viewport" content="width=1280" />
+<link rel="stylesheet" href="assets/tokens.css" />
+<script src="deck-stage.js"></script>
+<template id="__bundler_thumbnail" data-bg-color="#ffffff">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#ffffff"/>
+    <g transform="translate(600 400)">
+      <g fill="#ff385c">
+        <rect x="-14" y="-140" width="28" height="280" rx="6"/>
+        <rect x="-14" y="-140" width="28" height="280" rx="6" transform="rotate(45)"/>
+        <rect x="-14" y="-140" width="28" height="280" rx="6" transform="rotate(90)"/>
+        <rect x="-14" y="-140" width="28" height="280" rx="6" transform="rotate(135)"/>
+      </g>
+    </g>
+    <text x="600" y="640" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="40" fill="#1a1a1a" letter-spacing="4">CCFM · AX</text>
+    <text x="600" y="685" text-anchor="middle" font-family="Inter, sans-serif" font-weight="500" font-size="22" fill="#6a6a6a">Guide Deck</text>
+  </svg>
+</template>
+<script>
+// Tweakable defaults — persisted by host via postMessage
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "accentColor": "#ff385c",
+  "fontScale": 1,
+  "theme": "light",
+  "showFooter": true,
+  "showSlots": false,
+  "coverLayout": "split"
+}/*EDITMODE-END*/;
+</script>
+<style>
+  /* Local overrides for slide-specific composition */
+  .cover-hero { flex: 1; display: grid; grid-template-columns: 1.1fr 1fr; gap: 64px; align-items: center; }
+  .cover-hero.stack { grid-template-columns: 1fr; align-items: end; }
+  .cover-mark { display: flex; align-items: center; gap: 14px; }
+  .cover-mark .name { font-size: 15px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--ink); }
+  .cover-mark .sub { font-size: 12px; font-weight: 500; letter-spacing: 1.2px; color: var(--mute); text-transform: uppercase; }
+  .cover-meta { display: flex; flex-direction: column; gap: 6px; }
+  .cover-graphic {
+    height: 480px;
+    background: var(--surface-1);
+    border-radius: var(--r-20);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--hairline);
+  }
+  .cover-graphic .terminal {
+    position: absolute; inset: 40px;
+    background: var(--code-bg); border-radius: 12px;
+    display: flex; flex-direction: column;
+    font-family: var(--font-mono); font-size: 14px; line-height: 1.7;
+    color: var(--code-ink);
+    overflow: hidden;
+  }
+  .cover-graphic .term-bar {
+    display: flex; gap: 6px; padding: 12px 14px; border-bottom: 1px solid rgba(255,255,255,0.08);
+    align-items: center;
+  }
+  .cover-graphic .term-bar .d { width: 10px; height: 10px; border-radius: 50%; }
+  .cover-graphic .term-body { padding: 16px 20px; flex: 1; }
+
+  /* TOC full-width */
+  .toc-full { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 56px; }
+
+  /* Two-col generic */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; flex: 1; }
+  .three-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; flex: 1; }
+
+  /* Before/After */
+  .ba { display: grid; grid-template-columns: 1fr 64px 1fr; gap: 0; flex: 1; align-items: stretch; }
+  .ba-col { background: var(--surface-1); border-radius: var(--r-14); padding: 32px; display: flex; flex-direction: column; gap: 18px; }
+  .ba-col.after { background: var(--ink); color: var(--canvas); }
+  .ba-col.after .t-ash { color: rgba(255,255,255,0.62); }
+  .ba-col.after .ba-label { color: var(--accent); }
+  .ba-col.after li { color: rgba(255,255,255,0.88); }
+  .ba-col.after li::before { background: var(--accent); }
+  .ba-arrow { display: flex; align-items: center; justify-content: center; color: var(--mute); font-size: 32px; }
+  .ba-label {
+    font-size: 12px; font-weight: 800; letter-spacing: 1.6px; text-transform: uppercase;
+    color: var(--mute);
+  }
+  .ba h3 { font-size: 26px; font-weight: 700; margin: 0; letter-spacing: -0.4px; line-height: 1.2; }
+  .ba ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .ba li {
+    font-size: 16px; font-weight: 500; line-height: 1.45; color: var(--ink-2);
+    display: grid; grid-template-columns: 14px 1fr; gap: 10px;
+  }
+  .ba li::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%; margin-top: 8px;
+    background: var(--mute);
+  }
+
+  /* Use-case cards */
+  .usecase {
+    background: var(--surface-1); border: 1px solid var(--hairline); border-radius: var(--r-14);
+    padding: 22px 24px; display: flex; flex-direction: column; gap: 10px;
+  }
+  .usecase .tag {
+    font-size: 11px; font-weight: 800; letter-spacing: 1.4px; text-transform: uppercase;
+    color: var(--accent); width: fit-content;
+  }
+  .usecase h4 { font-size: 18px; font-weight: 700; margin: 0; line-height: 1.25; }
+  .usecase p { font-size: 14.5px; font-weight: 500; line-height: 1.5; color: var(--ash); margin: 0; }
+
+  /* Guide slide — slot-doc */
+  .guide-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; flex: 1; }
+  .guide-block { background: var(--surface-1); border: 1px solid var(--hairline); border-radius: var(--r-14); padding: 24px 28px; }
+  .guide-block h3 { font-size: 18px; font-weight: 700; margin: 0 0 14px 0; letter-spacing: -0.2px; display: flex; align-items: center; gap: 10px; }
+  .guide-block h3 .n {
+    width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: #fff;
+    display: inline-flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800;
+  }
+  .guide-block p, .guide-block li { font-size: 14.5px; font-weight: 500; line-height: 1.55; color: var(--ink-2); margin: 0; }
+  .guide-block ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .guide-block li { display: grid; grid-template-columns: 14px 1fr; gap: 10px; }
+  .guide-block li::before { content: '·'; color: var(--accent); font-weight: 800; margin-top: -2px; }
+  .guide-block code {
+    font-family: var(--font-mono); font-size: 13px;
+    background: var(--surface-2); padding: 2px 6px; border-radius: 4px; color: var(--accent-deep);
+  }
+  [data-theme="dark"] .guide-block code { color: var(--accent); }
+
+  /* Accent bar strip on divider */
+  .accent-bar {
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 10px; background: var(--accent);
+  }
+
+  /* Tweaks panel */
+  .tweaks-panel {
+    position: fixed; right: 20px; bottom: 20px; z-index: 9999;
+    width: 300px; background: #fff; color: #1a1a1a;
+    border: 1px solid #e8e8e8; border-radius: 14px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.25), 0 4px 12px rgba(0,0,0,0.08);
+    font-family: 'Inter', sans-serif; font-size: 13px;
+    padding: 18px 20px; display: none;
+  }
+  .tweaks-panel.open { display: block; }
+  .tweaks-panel h4 {
+    font-size: 12px; font-weight: 800; letter-spacing: 1.8px; text-transform: uppercase;
+    margin: 0 0 14px 0; color: #1a1a1a;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .tweaks-panel h4 .dot {
+    display: inline-flex; align-items: center; gap: 6px; font-weight: 800;
+    color: #ff385c;
+  }
+  .tweaks-panel .row { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+  .tweaks-panel .row label { font-size: 11px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase; color: #6a6a6a; }
+  .tweaks-panel .swatches { display: flex; gap: 8px; }
+  .tweaks-panel .sw {
+    width: 28px; height: 28px; border-radius: 50%; cursor: pointer;
+    border: 2px solid transparent; transition: transform .12s;
+  }
+  .tweaks-panel .sw.active { border-color: #1a1a1a; transform: scale(1.08); }
+  .tweaks-panel .seg {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4px;
+    background: #f4f4f4; border-radius: 8px; padding: 3px;
+  }
+  .tweaks-panel .seg button {
+    border: none; background: transparent; padding: 6px 0; border-radius: 6px;
+    font-family: inherit; font-size: 12px; font-weight: 700; cursor: pointer;
+    color: #6a6a6a;
+  }
+  .tweaks-panel .seg button.active { background: #fff; color: #1a1a1a; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+  .tweaks-panel input[type="range"] { width: 100%; accent-color: #ff385c; }
+  .tweaks-panel .toggle {
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 13px; font-weight: 600; color: #1a1a1a; cursor: pointer;
+  }
+  .tweaks-panel .toggle input { appearance: none; width: 34px; height: 20px; background: #d4d4d4; border-radius: 999px; position: relative; cursor: pointer; transition: background .15s; }
+  .tweaks-panel .toggle input::after {
+    content: ''; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px;
+    border-radius: 50%; background: #fff; transition: transform .15s;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  }
+  .tweaks-panel .toggle input:checked { background: #ff385c; }
+  .tweaks-panel .toggle input:checked::after { transform: translateX(14px); }
+  .tweaks-panel select {
+    font-family: inherit; font-size: 13px; font-weight: 600;
+    padding: 8px 10px; border: 1px solid #e8e8e8; border-radius: 8px; background: #fff;
+  }
+
+  /* Apply CSS var overrides from tweaks */
+  html { --tweak-accent: var(--accent); }
+</style>
+</head>
+<body>
+
+<deck-stage width="1280" height="720">
+
+  <!-- ============== 1. COVER ============== -->
+  <section data-label="01 표지" class="slide">
+    <div class="cover-mark">
+      <div class="ccfm-mark"></div>
+      <div>
+        <div class="name">CCFM · AX Team</div>
+        <div class="sub">Automation Enablement Guide</div>
+      </div>
+    </div>
+
+    <div class="cover-hero" data-cover-hero>
+      <div>
+        <div class="kicker">Claude Code · Getting Started</div>
+        <h1 class="t-display" data-slot="title · max 2 lines">Claude Code<br/>시작 가이드</h1>
+        <p class="t-lede" style="margin-top:22px; max-width: 520px;" data-slot="subtitle">
+          Windows 환경에서의 설치, 첫 실행, 그리고 실무 활용까지 <br/>
+          — AX 문화의 첫 걸음을 위한 핸드북
+        </p>
+        <div class="cover-meta" style="margin-top: 48px;">
+          <div class="t-caption" style="font-weight:700; letter-spacing:1.6px; text-transform:uppercase; color: var(--ink);">Version 1.0 · 2026.04</div>
+          <div class="t-caption">AX Team · 사내 실무자 & 외부 교육용</div>
+        </div>
+      </div>
+      <div class="cover-graphic">
+        <div class="terminal">
+          <div class="term-bar">
+            <span class="d" style="background:#ff5f57"></span>
+            <span class="d" style="background:#febc2e"></span>
+            <span class="d" style="background:#28c840"></span>
+            <span style="margin-left:12px; font-size:11px; color:#8a8a8a; letter-spacing:0.4px;">claude — bash</span>
+          </div>
+          <div class="term-body">
+            <div><span style="color:var(--code-green)">➜</span> <span style="color:var(--code-blue)">ccfm</span> <span style="color:var(--code-mute)">git:(main)</span> claude</div>
+            <div style="color:var(--code-mute); margin-top:10px;">✻ Welcome to Claude Code</div>
+            <div style="color:var(--code-mute);">&nbsp;&nbsp;Anthropic Claude · v2.x</div>
+            <div style="margin-top:14px;"><span style="color:var(--code-pink)">?</span> <span>어떤 작업을 도와드릴까요?</span></div>
+            <div style="margin-top:18px; color:var(--code-green);">&gt; <span style="color:var(--code-ink);">로그 파일에서 에러만 추출해줘_</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <div class="footer-brand"><span class="dot"></span><span>CCFM AX</span></div>
+      <div>01 / 10</div>
+    </div>
+  </section>
+
+  <!-- ============== 2. TOC ============== -->
+  <section data-label="02 목차" class="slide tint">
+    <div class="slide-head">
+      <div class="kicker">Contents</div>
+      <h1 class="t-title">목차 · Table of Contents</h1>
+      <p class="t-lede">설치부터 활용까지 — 8개 챕터, 약 20분 소요</p>
+    </div>
+
+    <div class="toc-full" data-slot="chapters · up to 8">
+      <div>
+        <div class="toc-row"><div class="n">01</div><div class="t">기능 요약 (What & Why)</div><div class="meta">3분</div></div>
+        <div class="toc-row"><div class="n">02</div><div class="t">기존 방식과의 비교</div><div class="meta">2분</div></div>
+        <div class="toc-row"><div class="n">03</div><div class="t">핵심 이점 & 변화</div><div class="meta">2분</div></div>
+        <div class="toc-row"><div class="n">04</div><div class="t">Windows 설치 가이드</div><div class="meta">5분</div></div>
+      </div>
+      <div>
+        <div class="toc-row"><div class="n">05</div><div class="t">첫 실행 & 기본 명령</div><div class="meta">3분</div></div>
+        <div class="toc-row"><div class="n">06</div><div class="t">장단점 정리</div><div class="meta">2분</div></div>
+        <div class="toc-row"><div class="n">07</div><div class="t">CCFM 실무 활용 사례 & 주의사항</div><div class="meta">3분</div></div>
+        <div class="toc-row"><div class="n">08</div><div class="t">템플릿 사용 가이드 (내부용)</div><div class="meta">—</div></div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <div class="footer-brand"><span class="dot"></span><span>CCFM AX</span></div>
+      <div>02 / 10</div>
+    </div>
+  </section>
+
+  <!-- ============== 3. WHAT & WHY ============== -->
+  <section data-label="03 기능 요약" class="slide">
+    <div class="slide-head">
+      <div class="kicker">01 · What & Why</div>
+      <h1 class="t-title" data-slot="title">Claude Code란 무엇인가?</h1>
+      <p class="t-lede" data-slot="one-line summary">
+        터미널에서 직접 돌아가는 AI 코딩 에이전트 — 채팅창이 아니라 당신의 작업 환경 안으로 들어옵니다.
+      </p>
+    </div>
+
+    <div class="three-col" data-slot="3 key points">
+      <div class="card">
+        <div class="card-numeral">01</div>
+        <h3>터미널 네이티브 (Terminal-native)</h3>
+        <p>브라우저·IDE 플러그인이 아닌 CLI에서 실행. 당신의 파일, 커밋, 환경변수, 툴체인에 직접 접근합니다.</p>
+      </div>
+      <div class="card">
+        <div class="card-numeral">02</div>
+        <h3>맥락 이해 (Context-aware)</h3>
+        <p>현재 디렉토리의 전체 코드베이스를 읽고 수정합니다. 파일 하나씩 복붙할 필요가 없어요.</p>
+      </div>
+      <div class="card">
+        <div class="card-numeral">03</div>
+        <h3>에이전틱 실행 (Agentic)</h3>
+        <p>명령 대신 목표를 줍니다. Claude가 계획을 세우고, 파일을 고치고, 테스트까지 돌려봅니다.</p>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <div class="footer-brand"><span class="dot"></span><span>CCFM AX</span></div>
+      <div>03 / 10</div>
+    </div>
+  </section>
+
+  <!-- ============== 4. BEFORE / AFTER ============== -->
+  <section data-label="04 Before After" class="slide tint">
+    <div class="slide-head">
+      <div class="kicker">02 · Before & After</div>
+      <h1 class="t-title" data-slot="title">무엇이 달라지는가</h1>
+      <p class="t-lede">챗봇에 붙여넣던 방식과 비교해, 실제 작업 흐름이 어떻게 바뀌는지.</p>
+    </div>
+
+    <div class="ba">
+      <div class="ba-col" data-slot="before">
+        <div class="ba-label">Before · 기존 방식</div>
+        <h3>복붙 반복 워크플로우</h3>
+        <ul>
+          <li>코드를 브라우저 챗창에 복사</li>
+          <li>답변을 다시 IDE로 붙여넣기</li>
+          <li>파일 여러 개면 한 번에 처리 불가</li>
+          <li>실행·검증은 전부 수동</li>
+          <li>맥락이 끊겨 대화가 길어질수록 품질 저하</li>
+        </ul>
+      </div>
+      <div class="ba-arrow">→</div>
+      <div class="ba-col after" data-slot="after">
+        <div class="ba-label">After · Claude Code</div>
+        <h3>터미널에서 완결되는 흐름</h3>
+        <ul>
+          <li>프로젝트 루트에서 <code style="font-family:var(--font-mono); background:rgba(255,255,255,0.1); padding:2px 6px; border-radius:4px;">claude</code> 한 줄</li>
+          <li>Claude가 파일 탐색·수정·실행까지</li>
+          <li>여러 파일 동시 편집 가능</li>
+          <li>터미널 명령·테스트 자동 수행</li>
+          <li>세션 내 프로젝트 맥락 유지</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <div class="footer-brand"><span class="dot"></span><span>CCFM AX</span></div>
+      <div>04 / 10</div>
+    </div>
+  </section>
+
+  <!-- ============== 5. BENEFITS (3-up with KPI) ============== -->
+  <section data-label="05 핵심 이점" class="slide">
+    <div class="slide-head">
+      <div class="kicker">03 · Benefits</div>
+      <h1 class="t-title" data-slot="title">쓰면서 체감하게 되는 세 가지 변화</h1>
+    </div>
+
+    <div class="three-col" data-slot="3 benefits with KPI">
+      <div class="card elevated">
+        <div class="kpi"><div class="v">3–5×</div><div class="l">더 빠른 작업 속도</div></div>
+        <h3 style="margin-top:8px;">반복 업무의 자동화</h3>
+        <p>로그 파싱, CSV 정제, 보일러플레이트 코드 — “한 번 말하면” 끝납니다. AX팀 내부 측정 기준.</p>
+      </div>
+      <div class="card elevated">
+        <div class="kpi"><div class="v">0 →</div><div class="l">컨텍스트 스위칭</div></div>
+        <h3 style="margin-top:8px;">IDE를 떠날 필요 없음</h3>
+        <p>브라우저·챗창을 오갈 필요가 없습니다. 실무자의 주의집중 유지가 가장 큰 효과입니다.</p>
+      </div>
+      <div class="card elevated">
+        <div class="kpi"><div class="v">+1</div><div class="l">팀 역량</div></div>
+        <h3 style="margin-top:8px;">실무자가 직접 자동화</h3>
+        <p>AX팀에 매번 요청 대신, 본인 도메인 지식 기반으로 직접 스크립트·파이프라인을 만듭니다.</p>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <div class="footer-brand"><span class="dot"></span><span>CCFM AX</span></div>
+      <div>05 / 10</div>
+    </div>
+  </section>
+
+  <!-- ============== 6. INSTALL (Step 1→4) ============== -->
+  <section data-label="06 Windows 설치" class="slide tint">
+    <div class="slide-head">
+      <div class="kicker">04 · Installation · Windows</div>
+      <h1 class="t-title" data-slot="title">Windows 설치 — 네 단계</h1>
+      <p class="t-lede">Windows는 WSL2(Ubuntu) 위에서 실행하는 것이 공식 권장 방식입니다.</p>
+    </div>
+
+    <div class="steps" data-slot="steps 1–4">
+      <div class="step">
+        <div class="step-num">Step 01</div>
+        <h4>WSL2 설치</h4>
+        <p>PowerShell을 관리자 권한으로 열고 실행. 재부팅 필요.</p>
+        <code>wsl --install</code>
+      </div>
+      <div class="step">
+        <div class="step-num">Step 02</div>
+        <h4>Ubuntu 계정 생성</h4>
+        <p>재부팅 후 터미널에 Ubuntu 창이 뜹니다. 사용자명 · 비밀번호 설정.</p>
+        <code>username / password</code>
+      </div>
+      <div class="step">
+        <div class="step-num">Step 03</div>
+        <h4>Node.js 설치</h4>
+        <p>WSL(Ubuntu) 터미널에서 NodeSource LTS를 설치합니다.</p>
+        <code>sudo apt install -y nodejs npm</code>
+      </div>
+      <div class="step">
+        <div class="step-num">Step 04</div>
+        <h4>Claude Code 설치</h4>
+        <p>npm 글로벌 설치 후 첫 실행 시 로그인 안내가 뜹니다.</p>
+        <code>npm install -g @anthropic-ai/claude-code</code>
+      </div>
+    </div>
+
+    <div class="img-slot" data-slot="screenshot · WSL + npm install 결과 화면" style="margin-top: 22px; min-height: 80px;">
+      스크린샷 슬롯 · 설치 완료 화면
+    </div>
+
+    <div class="slide-footer">
+      <div class="footer-brand"><span class="dot"></span><span>CCFM AX</span></div>
+      <div>06 / 10</div>
+    </div>
+  </section>
+
+  <!-- ============== 7. FIRST RUN / CODE ============== -->
+  <section data-label="07 첫 실행" class="slide">
+    <div class="slide-head">
+      <div class="kicker">05 · First Run</div>
+      <h1 class="t-title" data-slot="title">첫 실행 — 프로젝트 폴더에서 <code style="font-family:var(--font-mono); background:var(--surface-2); padding:4px 12px; border-radius:8px; font-size:32px;">claude</code></h1>
+    </div>
+
+    <div class="two-col" style="align-items: start;">
+      <div data-slot="terminal block">
+        <div class="code">
+<span class="cmt"># 1. 작업할 프로젝트 폴더로 이동</span><br/>
+<span class="prompt">$</span> <span class="fn">cd</span> <span class="str">~/projects/my-report</span><br/>
+<br/>
+<span class="cmt"># 2. Claude Code 실행</span><br/>
+<span class="prompt">$</span> <span class="fn">claude</span><br/>
+<br/>
+<span class="dim">✻ Welcome to Claude Code</span><br/>
+<span class="dim">&nbsp;&nbsp;/help 로 명령 목록 확인</span><br/>
+<br/>
+<span class="kw">&gt;</span> <span>data/raw.csv 에서 중복 행을 제거하고</span><br/>
+<span class="kw">&nbsp;</span> <span>cleaned.csv 로 저장해줘</span><br/>
+<br/>
+<span class="dim">● 파일을 읽는 중… (1,204 rows)</span><br/>
+<span class="dim">● pandas 스크립트 생성 중…</span><br/>
+<span class="dim">✓ cleaned.csv 생성 완료 (1,087 rows)</span>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 16px;" data-slot="key commands">
+        <h3 style="font-size: 20px; font-weight: 700; margin: 0; letter-spacing:-0.3px;">자주 쓰는 명령어</h3>
+        <div class="card" style="padding: 18px 22px; gap: 4px;">
+          <div style="font-family: var(--font-mono); font-size: 16px; color: var(--accent); font-weight: 700;">/init</div>
+          <p style="font-size: 14.5px; font-weight: 500; color: var(--ash); margin: 0;">프로젝트 맥락 파일(CLAUDE.md) 생성</p>
+        </div>
+        <div class="card" style="padding: 18px 22px; gap: 4px;">
+          <div style="font-family: var(--font-mono); font-size: 16px; color: var(--accent); font-weight: 700;">/clear</div>
+          <p style="font-size: 14.5px; font-weight: 500; color: var(--ash); margin: 0;">대화 맥락 초기화 (긴 세션 후)</p>
+        </div>
+        <div class="card" style="padding: 18px 22px; gap: 4px;">
+          <div style="font-family: var(--font-mono); font-size: 16px; color: var(--accent); font-weight: 700;">Ctrl + C</div>
+          <p style="font-size: 14.5px; font-weight: 500; color: var(--ash); margin: 0;">실행 중인 작업 중단</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <div class="footer-brand"><span class="dot"></span><span>CCFM AX</span></div>
+      <div>07 / 10</div>
+    </div>
+  </section>
+
+  <!-- ============== 8. PROS / CONS ============== -->
+  <section data-label="08 장단점" class="slide tint">
+    <div class="slide-head">
+      <div class="kicker">06 · Trade-offs</div>
+      <h1 class="t-title" data-slot="title">장단점 — 솔직하게</h1>
+      <p class="t-lede">모든 업무가 Claude Code에 적합한 건 아닙니다. 맞는 일에 쓰세요.</p>
+    </div>
+
+    <div class="two-col" data-slot="pros vs cons">
+      <div class="pc pros">
+        <h3>✓ &nbsp;Pros · 장점</h3>
+        <ul>
+          <li>로컬 파일/커맨드 직접 접근 — 복붙 없음</li>
+          <li>반복 작업(데이터 정제, 리팩토링) 압도적 속도</li>
+          <li>프로젝트 맥락 기반 응답 — 품질 일관성</li>
+          <li>비개발자도 자연어로 스크립트 생성 가능</li>
+          <li>Git, 테스트, 터미널 통합 — 실무 적합도 높음</li>
+        </ul>
+      </div>
+      <div class="pc cons">
+        <h3>✗ &nbsp;Cons · 단점</h3>
+        <ul>
+          <li>WSL 등 초기 환경 세팅 허들 (Windows)</li>
+          <li>대형 코드베이스에서 토큰 비용 증가</li>
+          <li>자동 실행 권한 — 승인 전 반드시 검토 필요</li>
+          <li>실시간 UI/디자인 피드백에는 부적합</li>
+          <li>사내 데이터 반출 관련 내부 정책 확인 필수</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <div class="footer-brand"><span class="dot"></span><span>CCFM AX</span></div>
+      <div>08 / 10</div>
+    </div>
+  </section>
+
+  <!-- ============== 9. USE CASES + DO/DON'T ============== -->
+  <section data-label="09 활용 & 주의" class="slide">
+    <div class="slide-head">
+      <div class="kicker">07 · CCFM Use Cases & Cautions</div>
+      <h1 class="t-title" data-slot="title">CCFM 실무 활용 & 주의사항</h1>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; flex: 1;">
+      <!-- Left: Use cases -->
+      <div style="display: flex; flex-direction: column; gap: 14px;" data-slot="use cases · 2–3">
+        <div class="kicker" style="margin-bottom: 0; color: var(--ash);">활용 사례</div>
+        <div class="usecase">
+          <div class="tag">Media · 리포트</div>
+          <h4>광고 리포트 CSV 자동 정제 & 대시보드 포맷 변환</h4>
+          <p>매체사별 원본 파일 → 공통 스키마 → PPT용 표 자동 생성까지 한 세션.</p>
+        </div>
+        <div class="usecase">
+          <div class="tag">Creative · 텍스트</div>
+          <h4>기획안 초고 → 검수용 비교 버전 3종 생성</h4>
+          <p>톤·길이·타깃별 버전을 폴더에 파일로 저장. 리뷰 워크플로우 단축.</p>
+        </div>
+        <div class="usecase">
+          <div class="tag">Ops · 문서</div>
+          <h4>회의록 폴더 일괄 요약 & Notion 이관 스크립트</h4>
+          <p>transcript 폴더 전체 → 요약 md → Notion API 업로드 자동화.</p>
+        </div>
+      </div>
+
+      <!-- Right: Do / Don't -->
+      <div style="display: flex; flex-direction: column;" data-slot="do & don't">
+        <div class="kicker" style="margin-bottom: 6px; color: var(--ash);">주의사항</div>
+        <div class="dd do">
+          <div class="tag">Do</div>
+          <p><strong>작업 전 Git 커밋</strong>을 습관화하세요. 되돌릴 지점이 반드시 필요합니다.</p>
+        </div>
+        <div class="dd do">
+          <div class="tag">Do</div>
+          <p>민감 데이터가 포함된 파일은 <strong>로컬 샘플본</strong>으로 먼저 테스트하세요.</p>
+        </div>
+        <div class="dd dont">
+          <div class="tag">Don't</div>
+          <p>자동 실행(<code style="font-family:var(--font-mono); font-size:15px;">--dangerously-skip-permissions</code>) 플래그는 <strong>검증된 스크립트에만</strong>.</p>
+        </div>
+        <div class="dd dont">
+          <div class="tag">Don't</div>
+          <p>고객사 원본 데이터·자격증명을 그대로 컨텍스트에 넣지 마세요. <strong>사내 정책을 먼저 확인</strong>.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <div class="footer-brand"><span class="dot"></span><span>CCFM AX</span></div>
+      <div>09 / 10</div>
+    </div>
+  </section>
+
+  <!-- ============== 10. TEMPLATE GUIDE ============== -->
+  <section data-label="10 템플릿 사용 가이드" class="slide ink">
+    <div class="slide-head">
+      <div class="kicker">Template · Internal</div>
+      <h1 class="t-title" style="color:#fff;">템플릿 사용 가이드</h1>
+      <p class="t-lede" style="color: rgba(255,255,255,0.72);">콘텐츠를 바꿔도 레이아웃이 깨지지 않는 네 가지 원칙.</p>
+    </div>
+
+    <div class="guide-grid" style="align-items: start;">
+      <div style="display: flex; flex-direction: column; gap: 18px;">
+        <div class="guide-block" style="background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); color: rgba(255,255,255,0.88);">
+          <h3 style="color:#fff;"><span class="n">1</span> 슬롯(data-slot) 표기를 따르세요</h3>
+          <p style="color: rgba(255,255,255,0.72);">각 콘텐츠 영역에는 <code>data-slot="title · max 2 lines"</code> 같은 제약이 붙어 있습니다. Tweaks에서 <strong>Show slots</strong>를 켜면 슬롯이 시각화됩니다.</p>
+        </div>
+        <div class="guide-block" style="background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1);">
+          <h3 style="color:#fff;"><span class="n">2</span> 텍스트 길이 한도를 지키세요</h3>
+          <ul style="color: rgba(255,255,255,0.72);">
+            <li>Title: 최대 2줄 (약 30자)</li>
+            <li>Lede: 최대 3줄 (약 80자)</li>
+            <li>3-up 카드 설명문: 최대 3줄</li>
+            <li>Do/Don't 각 항목: 1문장 원칙</li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 18px;">
+        <div class="guide-block" style="background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1);">
+          <h3 style="color:#fff;"><span class="n">3</span> 레이아웃을 새로 만들지 마세요</h3>
+          <p style="color: rgba(255,255,255,0.72);">슬라이드 유형은 <strong>Cover · TOC · 3-up · Before/After · Steps · Code · Pros/Cons · UseCase · Divider</strong>로 고정. 새 주제는 기존 유형 중에서 고르세요.</p>
+        </div>
+        <div class="guide-block" style="background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1);">
+          <h3 style="color:#fff;"><span class="n">4</span> Tweaks로 톤을 조정하세요</h3>
+          <ul style="color: rgba(255,255,255,0.72);">
+            <li>악센트 색 — 주제별로 구분 (Claude=Rausch)</li>
+            <li>Dark/Light — 장표 성격에 따라</li>
+            <li>Font scale — 현장 화면 크기 맞춤</li>
+            <li>Footer on/off — 인쇄 vs. 스크린</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer" style="color: rgba(255,255,255,0.5);">
+      <div class="footer-brand"><span class="dot"></span><span style="color: rgba(255,255,255,0.8);">CCFM AX</span></div>
+      <div>10 / 10</div>
+    </div>
+  </section>
+
+</deck-stage>
+
+<!-- ============== TWEAKS PANEL ============== -->
+<div class="tweaks-panel" id="tweaks">
+  <h4><span>Tweaks</span><span class="dot">●</span></h4>
+
+  <div class="row">
+    <label>Accent color</label>
+    <div class="swatches" id="sw-accent">
+      <div class="sw" data-color="#ff385c" style="background:#ff385c" title="Rausch"></div>
+      <div class="sw" data-color="#ff008a" style="background:#ff008a" title="CCFM Pink"></div>
+      <div class="sw" data-color="#2f6feb" style="background:#2f6feb" title="Focus Blue"></div>
+      <div class="sw" data-color="#0f766e" style="background:#0f766e" title="Calm Teal"></div>
+      <div class="sw" data-color="#7c3aed" style="background:#7c3aed" title="Violet"></div>
+      <div class="sw" data-color="#1a1a1a" style="background:#1a1a1a" title="Mono"></div>
+    </div>
+  </div>
+
+  <div class="row">
+    <label>Theme</label>
+    <div class="seg" id="sw-theme">
+      <button data-theme-val="light">Light</button>
+      <button data-theme-val="dark">Dark</button>
+    </div>
+  </div>
+
+  <div class="row">
+    <label>Font scale <span style="float:right; font-weight:500; color:#6a6a6a;" id="fs-val">1.00×</span></label>
+    <input type="range" id="sw-fontscale" min="0.85" max="1.25" step="0.05" value="1.0">
+  </div>
+
+  <div class="row">
+    <label>Cover layout</label>
+    <select id="sw-cover">
+      <option value="split">Split (terminal + text)</option>
+      <option value="stack">Stack (text only)</option>
+    </select>
+  </div>
+
+  <div class="row">
+    <label class="toggle">
+      <span>Footer (page number)</span>
+      <input type="checkbox" id="sw-footer" checked>
+    </label>
+  </div>
+
+  <div class="row" style="margin-bottom:0;">
+    <label class="toggle">
+      <span>Show slot markers</span>
+      <input type="checkbox" id="sw-slots">
+    </label>
+  </div>
+</div>
+
+<script>
+(function() {
+  // ===== Tweaks infrastructure =====
+  const panel = document.getElementById('tweaks');
+  const state = Object.assign({}, TWEAK_DEFAULTS);
+
+  function apply() {
+    document.documentElement.style.setProperty('--accent', state.accentColor);
+    document.documentElement.setAttribute('data-theme', state.theme);
+    document.documentElement.style.fontSize = (16 * state.fontScale) + 'px';
+    // The CSS uses px directly (not rem), so also scale via a custom approach:
+    document.body.style.setProperty('--font-scale', state.fontScale);
+
+    // Apply font scale by overriding core type vars
+    const scale = state.fontScale;
+    document.documentElement.style.setProperty('--fs-display',  (60 * scale) + 'px');
+    document.documentElement.style.setProperty('--fs-title',    (44 * scale) + 'px');
+    document.documentElement.style.setProperty('--fs-subtitle', (30 * scale) + 'px');
+    document.documentElement.style.setProperty('--fs-lede',     (24 * scale) + 'px');
+    document.documentElement.style.setProperty('--fs-body',     (20 * scale) + 'px');
+    document.documentElement.style.setProperty('--fs-small',    (18 * scale) + 'px');
+    document.documentElement.style.setProperty('--fs-caption',  (16 * scale) + 'px');
+
+    // Footer
+    document.querySelectorAll('.slide').forEach(s => {
+      s.classList.toggle('hide-footer', !state.showFooter);
+    });
+
+    // Slot markers
+    document.body.classList.toggle('show-slots', !!state.showSlots);
+
+    // Cover layout
+    const hero = document.querySelector('[data-cover-hero]');
+    if (hero) hero.classList.toggle('stack', state.coverLayout === 'stack');
+
+    // Reflect control values
+    document.querySelectorAll('#sw-accent .sw').forEach(el =>
+      el.classList.toggle('active', el.dataset.color === state.accentColor));
+    document.querySelectorAll('#sw-theme button').forEach(el =>
+      el.classList.toggle('active', el.dataset.themeVal === state.theme));
+    document.getElementById('sw-fontscale').value = state.fontScale;
+    document.getElementById('fs-val').textContent = state.fontScale.toFixed(2) + '×';
+    document.getElementById('sw-cover').value = state.coverLayout;
+    document.getElementById('sw-footer').checked = state.showFooter;
+    document.getElementById('sw-slots').checked = state.showSlots;
+  }
+
+  function set(key, val) {
+    state[key] = val;
+    apply();
+    try {
+      window.parent.postMessage({type: '__edit_mode_set_keys', edits: {[key]: val}}, '*');
+    } catch (e) {}
+  }
+
+  // Wire controls
+  document.querySelectorAll('#sw-accent .sw').forEach(el => {
+    el.addEventListener('click', () => set('accentColor', el.dataset.color));
+  });
+  document.querySelectorAll('#sw-theme button').forEach(el => {
+    el.addEventListener('click', () => set('theme', el.dataset.themeVal));
+  });
+  document.getElementById('sw-fontscale').addEventListener('input', (e) => {
+    set('fontScale', parseFloat(e.target.value));
+  });
+  document.getElementById('sw-cover').addEventListener('change', (e) => {
+    set('coverLayout', e.target.value);
+  });
+  document.getElementById('sw-footer').addEventListener('change', (e) => {
+    set('showFooter', e.target.checked);
+  });
+  document.getElementById('sw-slots').addEventListener('change', (e) => {
+    set('showSlots', e.target.checked);
+  });
+
+  // Edit mode protocol
+  window.addEventListener('message', (e) => {
+    const d = e.data || {};
+    if (d.type === '__activate_edit_mode') panel.classList.add('open');
+    else if (d.type === '__deactivate_edit_mode') panel.classList.remove('open');
+  });
+  // Register AFTER listener
+  try { window.parent.postMessage({type: '__edit_mode_available'}, '*'); } catch (e) {}
+
+  apply();
+})();
+</script>
+
+</body>
+</html>
