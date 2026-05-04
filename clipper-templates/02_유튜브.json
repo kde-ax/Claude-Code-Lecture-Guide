@@ -68,6 +68,6 @@
 	"triggers": [
 		"https?:\\/\\/(www\\.)?(youtube\\.com|youtu\\.be)\\/"
 	],
-	"noteNameFormat": "{{date|date:\"yyyyMMdd\"}}_YT_{{title|safe_name}}",
+	"noteNameFormat": "{{date|date:\"YYYYMMDD\"}}_YT_{{title|safe_name}}",
 	"path": "raw/inbox"
 }

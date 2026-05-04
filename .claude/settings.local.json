@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-ChildItem -LiteralPath \"C:\\\\Users\\\\user AEA906\\\\Documents\\\\llm-wiki\" -Force -Directory | Select-Object Name | ForEach-Object { Write-Output $_.Name })"
+    ]
+  }
+}

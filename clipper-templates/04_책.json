@@ -41,7 +41,7 @@
 		},
 		{
 			"name": "published",
-			"value": "{{schema:@Book:datePublished}}",
+			"value": "{{schema:@Book:datePublished|date:\"YYYY-MM-DD\"}}",
 			"type": "date"
 		},
 		{
@@ -78,6 +78,6 @@
 	"triggers": [
 		"https?:\\/\\/(www\\.)?(amazon\\.[a-z.]+\\/.*\\/(dp|gp\\/product)|books\\.google|goodreads\\.com\\/book|aladin\\.co\\.kr|kyobobook\\.co\\.kr|yes24\\.com\\/Product\\/Goods|ridibooks\\.com)"
 	],
-	"noteNameFormat": "{{date|date:\"yyyyMMdd\"}}_BOOK_{{title|safe_name}}",
+	"noteNameFormat": "{{date|date:\"YYYYMMDD\"}}_BOOK_{{title|safe_name}}",
 	"path": "raw/inbox"
 }

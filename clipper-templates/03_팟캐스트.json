@@ -68,6 +68,6 @@
 	"triggers": [
 		"https?:\\/\\/(open\\.spotify\\.com\\/episode|podcasts\\.apple\\.com|overcast\\.fm|pocketcasts\\.com|castro\\.fm|player\\.fm|anchor\\.fm)"
 	],
-	"noteNameFormat": "{{date|date:\"yyyyMMdd\"}}_PC_{{title|safe_name}}",
+	"noteNameFormat": "{{date|date:\"YYYYMMDD\"}}_PC_{{title|safe_name}}",
 	"path": "raw/inbox"
 }
