@@ -1,0 +1,7 @@
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache
+.DS_Store
+Thumbs.db
+graphify-out/
+.claude/settings.local.json
