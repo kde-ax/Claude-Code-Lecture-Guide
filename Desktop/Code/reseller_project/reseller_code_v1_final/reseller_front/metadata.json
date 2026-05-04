@@ -1,5 +1,0 @@
-{
-  "name": "Reseller Detection AI Platform",
-  "description": "An AI-powered web application to detect potential resellers from sales data. Users can upload Excel or CSV files, and the platform identifies and analyzes high-risk orders, providing detailed reports and visualizations.",
-  "requestFramePermissions": []
-}
