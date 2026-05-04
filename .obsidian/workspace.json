@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "환영합니다!.md",
+                "file": "Clippings/앤트로픽 '미토스 쇼크'…AI가 해커가 됐다 1.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "환영합니다!"
+              "title": "앤트로픽 '미토스 쇼크'…AI가 해커가 됐다 1"
             }
           }
         ]
@@ -110,7 +110,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "환영합니다!.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -120,7 +119,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "환영합니다! 의 백링크"
+              "title": "백링크"
             }
           },
           {
@@ -129,12 +128,11 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "환영합니다!.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "환영합니다! 의 나가는 링크"
+              "title": "나가는 링크"
             }
           },
           {
@@ -172,13 +170,12 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "환영합니다!.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "환영합니다! 의 개요"
+              "title": "개요"
             }
           }
         ]
@@ -196,11 +193,57 @@
       "daily-notes:오늘의 일일 노트 열기": false,
       "templates:템플릿 삽입": false,
       "command-palette:명령어 팔레트 열기": false,
-      "bases:새 베이스 생성하기": false
+      "bases:새 베이스 생성하기": false,
+      "obsidian-git:Open Git source control": false
     }
   },
-  "active": "52bda6f187959339",
+  "active": "30d0bb958e9bf888",
   "lastOpenFiles": [
-    "환영합니다!.md"
+    "Clippings/앤트로픽 '미토스 쇼크'…AI가 해커가 됐다 1.md",
+    "Clippings/앤트로픽 '미토스 쇼크'…AI가 해커가 됐다.md",
+    "환영합니다!.md",
+    "Clippings",
+    "Desktop/Code/reseller_project/reseller_code_v1_final/reseller_back/node_modules/xlsx/types/tsconfig.json",
+    "Desktop/Code/reseller_project/reseller_code_v1_final/reseller_back/node_modules/xlsx/types/index.d.ts",
+    "Desktop/Code/reseller_project/reseller_code_v1_final/reseller_back/node_modules/xlsx/dist/xlsx.zahl.mjs",
+    "Desktop/Code/reseller_project/reseller_code_v1_final/reseller_back/node_modules/xlsx/dist/xlsx.zahl.js",
+    "Desktop/Code/reseller_project/reseller_code_v1_final/reseller_back/node_modules/xlsx/dist/xlsx.mini.min.map",
+    "Desktop/Code/reseller_project/reseller_code_v1_final/reseller_back/node_modules/xlsx/dist/xlsx.mini.min.js",
+    "Desktop/Code/reseller_project/reseller_code_v1_final/reseller_back/node_modules/xlsx/dist/xlsx.full.min.map",
+    "Desktop/Code/reseller_project/reseller_code_v1_final/reseller_back/node_modules/xlsx/dist/xlsx.full.min.js",
+    "Desktop/Code/reseller_project/reseller_code_v1_final/reseller_back/node_modules/xlsx/dist/xlsx.extendscript.js",
+    "Desktop/Code/reseller_project/reseller_code_v1_final/reseller_back/node_modules/word/README.md",
+    "Desktop/Code/reseller_project/reseller_code_v1_final/reseller_back/node_modules/word/CONTRIBUTING.md",
+    "Desktop/Code/reseller_project/reseller_code_v1_final/reseller_back/node_modules/xlsx/README.md",
+    "Desktop/Code/reseller_project/reseller_code_v1_final/reseller_back/node_modules/xlsx/legend.png",
+    "Desktop/Code/reseller_project/reseller_code_v1_final/reseller_back/node_modules/xlsx/formats.png",
+    "Desktop/Code/reseller_project/reseller_code_v1_final/reseller_back/node_modules/xlsx/CHANGELOG.md",
+    "Desktop/Code/reseller_project/reseller_code_v1_final/reseller_back/node_modules/wmf/README.md",
+    "Desktop/Code/reseller_project/reseller_code_v1_final/reseller_back/node_modules/ssf/README.md",
+    "Desktop/Code/reseller_project/reseller_code_v1_final/reseller_back/node_modules/frac/README.md",
+    "Desktop/Code/reseller_project/reseller_code_v1_final/reseller_back/node_modules/crc-32/README.md",
+    "Desktop/Code/reseller_project/reseller_code_v1_final/reseller_back/node_modules/codepage/README.md",
+    "Desktop/Code/reseller_project/reseller_code_v1_final/reseller_back/node_modules/cfb/README.md",
+    "Desktop/Code/reseller_project/reseller_code_v1_final/reseller_back/node_modules/adler-32/README.md",
+    "Desktop/Code/reseller_project/reseller_code_v1_final/reseller_front/README.md",
+    "Desktop/Code/reseller_project/reseller_code_v1_final/README.md",
+    "Desktop/promo_calculate-main/public/ccfm_투명.png",
+    "Desktop/promo_calculate-main/public/ccfm_logo.png",
+    "Desktop/promo_calculate-main/public/ccfmlog.webp",
+    "Desktop/promo_calculate-main/README.md",
+    "Desktop/promo_calculate-main/ccfm_투명.png",
+    "Desktop/promo_calculate-main/ccfmlog.webp",
+    "Claude Code Lecture Preparation/templates/troubleshooting.template.md",
+    "Claude Code Lecture Preparation/templates/install-guide.template.md",
+    "Claude Code Lecture Preparation/templates/hands-on.template.md",
+    "Claude Code Lecture Preparation/templates/feature-intro.template.md",
+    "Claude Code Lecture Preparation/outputs/CCFM_ClaudeCodeTerminalSetup_20260427/assets/screenshots/vscode-download.png",
+    "Claude Code Lecture Preparation/outputs/CCFM_ClaudeCodeTerminalSetup_20260427/assets/screenshots/vscode-claude-terminal.png",
+    "Claude Code Lecture Preparation/outputs/CCFM_ClaudeCodeTerminalSetup_20260427/assets/screenshots/usage-03.png",
+    "Claude Code Lecture Preparation/outputs/CCFM_ClaudeCodeWorkshop_20260422/README.md",
+    "Claude Code Lecture Preparation/outputs/CCFM_ClaudeCodeTerminalSetup_20260427/README.md",
+    "Claude Code Lecture Preparation/docs/claude-design-bundle/ccfm-guide-remix/chats/chat2.md",
+    "Claude Code Lecture Preparation/docs/claude-design-bundle/ccfm-guide-remix/chats/chat1.md",
+    "Claude Code Lecture Preparation/docs/claude-design-bundle/ccfm-guide-remix/README.md"
   ]
 }
