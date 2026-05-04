@@ -6,22 +6,99 @@ updated: 2026-05-04
 
 # 위키 인덱스
 
-> 매 ingest / 페이지 생성·삭제 시 갱신. 카테고리별 한 줄씩.
+> area × type 2축으로 정리. 매 페이지 생성·삭제 시 갱신. 위키링크는 파일명만으로 OK.
 
 ---
 
-## 엔티티
+## AI
 
-(아직 없음 — 첫 ingest에서 추가됨)
+**Entities**
+(없음)
 
-## 개념
+**Concepts**
+(없음)
 
-(아직 없음)
+**Sources**
+(없음)
 
-## 소스 (최신순)
+**Synthesis**
+(없음)
 
-(아직 없음)
+**Conversations**
+(없음)
 
-## Synthesis
+---
 
-(아직 없음)
+## 자동화
+
+**Entities**
+(없음)
+
+**Concepts**
+(없음)
+
+**Sources**
+(없음)
+
+**Synthesis**
+(없음)
+
+**Conversations**
+(없음)
+
+---
+
+## CCFM-내부
+
+**Entities**
+(없음)
+
+**Concepts**
+(없음)
+
+**Sources**
+(없음)
+
+**Synthesis**
+(없음)
+
+**Conversations**
+(없음)
+
+---
+
+## 메타-위키
+
+**Entities**
+(없음)
+
+**Concepts**
+(없음)
+
+**Sources**
+(없음)
+
+**Synthesis**
+(없음)
+
+**Conversations**
+(없음)
+
+---
+
+## 도구
+
+**Entities**
+(없음)
+
+**Concepts**
+(없음)
+
+**Sources**
+(없음)
+
+**Synthesis**
+(없음)
+
+**Conversations**
+(없음)
