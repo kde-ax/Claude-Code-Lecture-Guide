@@ -1,0 +1,73 @@
+{
+	"schemaVersion": "0.1.0",
+	"name": "03 팟캐스트",
+	"behavior": "create",
+	"noteContentFormat": "# {{title}}\n\n> **팟캐스트**: {{schema:@PodcastEpisode:partOfSeries:name}}\n> **호스트 / 게스트**: {{author}}\n> **에피소드 URL**: [{{url}}]({{url}})\n> **공개일**: {{published}}\n> **재생시간**: {{schema:@PodcastEpisode:duration}}\n> **클리핑**: {{date}}\n\n## 한 줄 요약\n\n_(Claude가 ingest 시 채움)_\n\n## 핵심 takeaway\n\n_(Claude가 ingest 시 3~5개 + 시간 인덱스 함께 채움)_\n\n## 등장 인물 / 언급된 것\n\n_(Claude가 엔티티 정리 → wiki/entities/ 와 연결)_\n\n---\n\n## 에피소드 설명\n\n{{description}}\n\n---\n\n## 쇼노트 / 트랜스크립트\n\n{{content}}\n\n---\n\n## 메모\n\n{{highlights}}",
+	"properties": [
+		{
+			"name": "title",
+			"value": "{{title}}",
+			"type": "text"
+		},
+		{
+			"name": "type",
+			"value": "source",
+			"type": "text"
+		},
+		{
+			"name": "source_type",
+			"value": "podcast",
+			"type": "text"
+		},
+		{
+			"name": "source_url",
+			"value": "{{url}}",
+			"type": "text"
+		},
+		{
+			"name": "podcast_series",
+			"value": "{{schema:@PodcastEpisode:partOfSeries:name|wikilink}}",
+			"type": "text"
+		},
+		{
+			"name": "speakers",
+			"value": "{{author|split:\", \"|wikilink|join}}",
+			"type": "multitext"
+		},
+		{
+			"name": "duration",
+			"value": "{{schema:@PodcastEpisode:duration}}",
+			"type": "text"
+		},
+		{
+			"name": "published",
+			"value": "{{published}}",
+			"type": "date"
+		},
+		{
+			"name": "created",
+			"value": "{{date}}",
+			"type": "date"
+		},
+		{
+			"name": "updated",
+			"value": "{{date}}",
+			"type": "date"
+		},
+		{
+			"name": "tags",
+			"value": "source/podcast, inbox",
+			"type": "multitext"
+		},
+		{
+			"name": "status",
+			"value": "raw",
+			"type": "text"
+		}
+	],
+	"triggers": [
+		"https?:\\/\\/(open\\.spotify\\.com\\/episode|podcasts\\.apple\\.com|overcast\\.fm|pocketcasts\\.com|castro\\.fm|player\\.fm|anchor\\.fm)"
+	],
+	"noteNameFormat": "{{date|date:\"yyyyMMdd\"}}_PC_{{title|safe_name}}",
+	"path": "raw/inbox"
+}

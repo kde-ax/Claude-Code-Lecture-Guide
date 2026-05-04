@@ -1,0 +1,83 @@
+{
+	"schemaVersion": "0.1.0",
+	"name": "04 책 / e-book",
+	"behavior": "create",
+	"noteContentFormat": "# {{title}}\n\n> **저자**: {{author}}\n> **출판사**: {{schema:@Book:publisher:name}}\n> **출간년도**: {{schema:@Book:datePublished|date:\"yyyy\"}}\n> **ISBN**: {{schema:@Book:isbn}}\n> **출처 페이지**: [{{url}}]({{url}})\n> **클리핑**: {{date}}\n\n![표지]({{image}})\n\n## 한 줄 요약\n\n_(Claude가 ingest 시 채움)_\n\n## 핵심 주장 / 테제\n\n_(Claude가 ingest 시 3~5개 채움)_\n\n## 주요 챕터 / 구조\n\n_(목차 정리)_\n\n## 등장 인물·개념\n\n_(Claude가 엔티티/개념 정리 → wiki/ 와 연결)_\n\n---\n\n## 책 소개 / 시놉시스\n\n{{description}}\n\n## 목차 / 발췌\n\n{{content}}\n\n---\n\n## 인용 / 하이라이트\n\n{{highlights}}\n\n## 독서 메모\n\n_(읽으면서 채울 영역)_",
+	"properties": [
+		{
+			"name": "title",
+			"value": "{{title}}",
+			"type": "text"
+		},
+		{
+			"name": "type",
+			"value": "source",
+			"type": "text"
+		},
+		{
+			"name": "source_type",
+			"value": "book",
+			"type": "text"
+		},
+		{
+			"name": "source_url",
+			"value": "{{url}}",
+			"type": "text"
+		},
+		{
+			"name": "author",
+			"value": "{{author|split:\", \"|wikilink|join}}",
+			"type": "multitext"
+		},
+		{
+			"name": "publisher",
+			"value": "{{schema:@Book:publisher:name}}",
+			"type": "text"
+		},
+		{
+			"name": "isbn",
+			"value": "{{schema:@Book:isbn}}",
+			"type": "text"
+		},
+		{
+			"name": "published",
+			"value": "{{schema:@Book:datePublished}}",
+			"type": "date"
+		},
+		{
+			"name": "cover",
+			"value": "{{image}}",
+			"type": "text"
+		},
+		{
+			"name": "reading_status",
+			"value": "to-read",
+			"type": "text"
+		},
+		{
+			"name": "created",
+			"value": "{{date}}",
+			"type": "date"
+		},
+		{
+			"name": "updated",
+			"value": "{{date}}",
+			"type": "date"
+		},
+		{
+			"name": "tags",
+			"value": "source/book, inbox",
+			"type": "multitext"
+		},
+		{
+			"name": "status",
+			"value": "raw",
+			"type": "text"
+		}
+	],
+	"triggers": [
+		"https?:\\/\\/(www\\.)?(amazon\\.[a-z.]+\\/.*\\/(dp|gp\\/product)|books\\.google|goodreads\\.com\\/book|aladin\\.co\\.kr|kyobobook\\.co\\.kr|yes24\\.com\\/Product\\/Goods|ridibooks\\.com)"
+	],
+	"noteNameFormat": "{{date|date:\"yyyyMMdd\"}}_BOOK_{{title|safe_name}}",
+	"path": "raw/inbox"
+}

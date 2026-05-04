@@ -1,0 +1,73 @@
+{
+	"schemaVersion": "0.1.0",
+	"name": "02 유튜브 영상",
+	"behavior": "create",
+	"noteContentFormat": "# {{title}}\n\n> **채널**: {{author}}\n> **영상**: [{{url}}]({{url}})\n> **업로드**: {{published}}\n> **재생시간**: {{schema:@VideoObject:duration}}\n> **클리핑**: {{date}}\n\n![{{title}}]({{schema:@VideoObject:thumbnailUrl}})\n\n## 한 줄 요약\n\n_(Claude가 ingest 시 채움)_\n\n## 핵심 takeaway\n\n_(Claude가 ingest 시 3~5개 + 타임스탬프와 함께 채움)_\n\n## 챕터 / 타임스탬프\n\n_(영상 챕터가 있으면 Claude가 정리)_\n\n---\n\n## 영상 설명\n\n{{schema:@VideoObject:description}}\n\n---\n\n## 트랜스크립트\n\n_(클리핑 시 자동 포함되지 않으면 별도로 붙여넣기)_\n\n{{content}}\n\n---\n\n## 메모\n\n{{highlights}}",
+	"properties": [
+		{
+			"name": "title",
+			"value": "{{title}}",
+			"type": "text"
+		},
+		{
+			"name": "type",
+			"value": "source",
+			"type": "text"
+		},
+		{
+			"name": "source_type",
+			"value": "youtube",
+			"type": "text"
+		},
+		{
+			"name": "source_url",
+			"value": "{{url}}",
+			"type": "text"
+		},
+		{
+			"name": "channel",
+			"value": "{{author|wikilink}}",
+			"type": "multitext"
+		},
+		{
+			"name": "duration",
+			"value": "{{schema:@VideoObject:duration}}",
+			"type": "text"
+		},
+		{
+			"name": "thumbnail",
+			"value": "{{schema:@VideoObject:thumbnailUrl}}",
+			"type": "text"
+		},
+		{
+			"name": "published",
+			"value": "{{published}}",
+			"type": "date"
+		},
+		{
+			"name": "created",
+			"value": "{{date}}",
+			"type": "date"
+		},
+		{
+			"name": "updated",
+			"value": "{{date}}",
+			"type": "date"
+		},
+		{
+			"name": "tags",
+			"value": "source/youtube, inbox",
+			"type": "multitext"
+		},
+		{
+			"name": "status",
+			"value": "raw",
+			"type": "text"
+		}
+	],
+	"triggers": [
+		"https?:\\/\\/(www\\.)?(youtube\\.com|youtu\\.be)\\/"
+	],
+	"noteNameFormat": "{{date|date:\"yyyyMMdd\"}}_YT_{{title|safe_name}}",
+	"path": "raw/inbox"
+}

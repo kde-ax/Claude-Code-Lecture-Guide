@@ -1,0 +1,88 @@
+{
+	"schemaVersion": "0.1.0",
+	"name": "05 리서치 논문",
+	"behavior": "create",
+	"noteContentFormat": "# {{title}}\n\n> **저자**: {{author}}\n> **출처**: [{{domain}}]({{url}})\n> **발행**: {{published}}\n> **DOI / arXiv**: {{schema:@ScholarlyArticle:doi}}\n> **클리핑**: {{date}}\n\n## 한 줄 요약 (TL;DR)\n\n_(Claude가 ingest 시 채움)_\n\n## 연구 질문\n\n_(논문이 풀려는 문제)_\n\n## 방법론\n\n_(접근법 / 데이터셋 / 실험 설계)_\n\n## 핵심 결과\n\n_(주요 finding 3~5개)_\n\n## 한계 / 비판 지점\n\n_(저자가 언급한 것 + 내 비판)_\n\n## 인용할 만한 부분\n\n_(원문 인용 + 페이지/섹션)_\n\n## 관련 연구 / 후속 읽을거리\n\n_(Claude가 references에서 추출 → wiki/sources/ 와 연결)_\n\n---\n\n## Abstract\n\n{{description}}\n\n## 본문\n\n{{content}}\n\n---\n\n## 하이라이트\n\n{{highlights}}",
+	"properties": [
+		{
+			"name": "title",
+			"value": "{{title}}",
+			"type": "text"
+		},
+		{
+			"name": "type",
+			"value": "source",
+			"type": "text"
+		},
+		{
+			"name": "source_type",
+			"value": "paper",
+			"type": "text"
+		},
+		{
+			"name": "source_url",
+			"value": "{{url}}",
+			"type": "text"
+		},
+		{
+			"name": "authors",
+			"value": "{{author|split:\", \"|wikilink|join}}",
+			"type": "multitext"
+		},
+		{
+			"name": "venue",
+			"value": "{{schema:@ScholarlyArticle:isPartOf:name|or:domain}}",
+			"type": "text"
+		},
+		{
+			"name": "doi",
+			"value": "{{schema:@ScholarlyArticle:doi}}",
+			"type": "text"
+		},
+		{
+			"name": "arxiv_id",
+			"value": "{{url|replace:\"https?://arxiv.org/(abs|pdf)/\":\"\"|replace:\".pdf$\":\"\"}}",
+			"type": "text"
+		},
+		{
+			"name": "abstract",
+			"value": "{{description}}",
+			"type": "text"
+		},
+		{
+			"name": "published",
+			"value": "{{published}}",
+			"type": "date"
+		},
+		{
+			"name": "reading_status",
+			"value": "to-read",
+			"type": "text"
+		},
+		{
+			"name": "created",
+			"value": "{{date}}",
+			"type": "date"
+		},
+		{
+			"name": "updated",
+			"value": "{{date}}",
+			"type": "date"
+		},
+		{
+			"name": "tags",
+			"value": "source/paper, inbox",
+			"type": "multitext"
+		},
+		{
+			"name": "status",
+			"value": "raw",
+			"type": "text"
+		}
+	],
+	"triggers": [
+		"https?:\\/\\/(arxiv\\.org\\/(abs|pdf)|www\\.biorxiv\\.org|www\\.medrxiv\\.org|openreview\\.net|aclanthology\\.org|proceedings\\.mlr\\.press|papers\\.nips\\.cc|dl\\.acm\\.org\\/doi|ieeexplore\\.ieee\\.org\\/document|doi\\.org\\/10\\.|link\\.springer\\.com|sciencedirect\\.com|nature\\.com\\/articles|science\\.org\\/doi|semanticscholar\\.org|scholar\\.google)"
+	],
+	"noteNameFormat": "{{date|date:\"yyyyMMdd\"}}_PAPER_{{title|safe_name}}",
+	"path": "raw/inbox"
+}
