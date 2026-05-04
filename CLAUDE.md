@@ -36,7 +36,8 @@ llm-wiki/
 │          ├── 자동화/      (n8n, 워크플로우, RPA, Slack봇 등)
 │          ├── CCFM-내부/   (사내 프로젝트·인물·정책·회의)
 │          ├── 메타-위키/   (위키 운영, 카파시 패턴, 클리퍼 템플릿)
-│          └── 도구/        (Obsidian, Claude Code, Firebase, SaaS)
+│          ├── 도구/        (Obsidian, Claude Code, Firebase, SaaS)
+│          └── IT기초/      (API·HTTP·DB·네트워크 등 일반 IT 기초 용어)
 ├── Clippings/          ← Obsidian Web Clipper 기본 저장 폴더 (raw 와 동급)
 └── CLAUDE.md           ← 이 파일 (스키마)
 ```
@@ -109,12 +110,13 @@ llm-wiki/
    - **synthesis**: 여러 소스를 가로지르는 분석·비교·결론
    - **conversation**: Claude와의 대화 중 보존 가치 있는 세션 기록
 
-2. **area 결정** — 도메인 토픽 (5개 시드)
+2. **area 결정** — 도메인 토픽 (6개)
    - **AI**: LLM, 머신러닝, 트랜스포머, 임베딩, AI 모델/연구
    - **자동화**: n8n, 워크플로우, RPA, Slack 봇, Apps Script
    - **CCFM-내부**: 사내 프로젝트·인물·회의·정책 (회의실예약, AX팀 활동 등)
    - **메타-위키**: 이 위키 자체 운영·구조·LLM-Wiki 패턴·클리퍼 템플릿
    - **도구**: Obsidian, Claude Code, Firebase, GitHub, 기타 외부 SaaS
+   - **IT기초**: API, HTTP, DB, 네트워크, 클라이언트-서버 등 일반 IT/개발 기초 용어
 
 3. **저장 경로**: `wiki/{type}/{area}/[페이지명].md`
 
@@ -209,7 +211,7 @@ related: [[LLM-Wiki패턴]], [[Obsidian-Git플러그인]]
 ---
 title: 페이지 제목
 type: entity | concept | source | synthesis | conversation
-area: AI | 자동화 | CCFM-내부 | 메타-위키 | 도구
+area: AI | 자동화 | CCFM-내부 | 메타-위키 | 도구 | IT기초
 tags: [태그1, 태그2]
 created: YYYY-MM-DD
 updated: YYYY-MM-DD
