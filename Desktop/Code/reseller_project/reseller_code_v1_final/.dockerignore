@@ -1,0 +1,24 @@
+# Python
+reseller_back/__pycache__/
+reseller_back/*.pyc
+reseller_back/venv/
+reseller_back/.venv/
+
+# Node
+reseller_front/node_modules/
+reseller_front/dist/
+reseller_front/.vite/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+
+# Git
+.git/
+
+# Temporary
+temp_*
+*.tmp
