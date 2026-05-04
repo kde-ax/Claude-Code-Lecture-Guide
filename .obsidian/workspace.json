@@ -110,6 +110,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "Clippings/앤트로픽 '미토스 쇼크'…AI가 해커가 됐다 1.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -119,7 +120,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "백링크"
+              "title": "앤트로픽 '미토스 쇼크'…AI가 해커가 됐다 1 의 백링크"
             }
           },
           {
@@ -128,11 +129,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "Clippings/앤트로픽 '미토스 쇼크'…AI가 해커가 됐다 1.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "나가는 링크"
+              "title": "앤트로픽 '미토스 쇼크'…AI가 해커가 됐다 1 의 나가는 링크"
             }
           },
           {
@@ -170,12 +172,13 @@
             "state": {
               "type": "outline",
               "state": {
+                "file": "Clippings/앤트로픽 '미토스 쇼크'…AI가 해커가 됐다 1.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "개요"
+              "title": "앤트로픽 '미토스 쇼크'…AI가 해커가 됐다 1 의 개요"
             }
           }
         ]
@@ -197,21 +200,27 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "30d0bb958e9bf888",
+  "active": "52bda6f187959339",
   "lastOpenFiles": [
+    "아웃풋/슬랙공지",
+    "아웃풋/히스토리문서",
+    "아웃풋/사용안내서",
+    "wiki/log.md",
+    "wiki/index.md",
+    "wiki/index.md.tmp.6712.1777873212310",
+    "아웃풋/CLAUDE.md",
+    "아웃풋/CLAUDE.md.tmp.6712.1777873210347",
+    "아웃풋",
+    "wiki/CLAUDE.md",
+    "기본-템플릿-clipper.json",
+    "raw/CLAUDE.md",
+    "CLAUDE.md",
+    "CLAUDE.md.tmp.6712.1777873149047",
+    "wiki/synthesis",
+    "wiki/sources",
     "Clippings/앤트로픽 '미토스 쇼크'…AI가 해커가 됐다 1.md",
     "Clippings/앤트로픽 '미토스 쇼크'…AI가 해커가 됐다.md",
     "환영합니다!.md",
-    "Clippings",
-    "Desktop/Code/reseller_project/reseller_code_v1_final/reseller_back/node_modules/xlsx/types/tsconfig.json",
-    "Desktop/Code/reseller_project/reseller_code_v1_final/reseller_back/node_modules/xlsx/types/index.d.ts",
-    "Desktop/Code/reseller_project/reseller_code_v1_final/reseller_back/node_modules/xlsx/dist/xlsx.zahl.mjs",
-    "Desktop/Code/reseller_project/reseller_code_v1_final/reseller_back/node_modules/xlsx/dist/xlsx.zahl.js",
-    "Desktop/Code/reseller_project/reseller_code_v1_final/reseller_back/node_modules/xlsx/dist/xlsx.mini.min.map",
-    "Desktop/Code/reseller_project/reseller_code_v1_final/reseller_back/node_modules/xlsx/dist/xlsx.mini.min.js",
-    "Desktop/Code/reseller_project/reseller_code_v1_final/reseller_back/node_modules/xlsx/dist/xlsx.full.min.map",
-    "Desktop/Code/reseller_project/reseller_code_v1_final/reseller_back/node_modules/xlsx/dist/xlsx.full.min.js",
-    "Desktop/Code/reseller_project/reseller_code_v1_final/reseller_back/node_modules/xlsx/dist/xlsx.extendscript.js",
     "Desktop/Code/reseller_project/reseller_code_v1_final/reseller_back/node_modules/word/README.md",
     "Desktop/Code/reseller_project/reseller_code_v1_final/reseller_back/node_modules/word/CONTRIBUTING.md",
     "Desktop/Code/reseller_project/reseller_code_v1_final/reseller_back/node_modules/xlsx/README.md",
@@ -235,15 +244,8 @@
     "Desktop/promo_calculate-main/ccfmlog.webp",
     "Claude Code Lecture Preparation/templates/troubleshooting.template.md",
     "Claude Code Lecture Preparation/templates/install-guide.template.md",
-    "Claude Code Lecture Preparation/templates/hands-on.template.md",
-    "Claude Code Lecture Preparation/templates/feature-intro.template.md",
     "Claude Code Lecture Preparation/outputs/CCFM_ClaudeCodeTerminalSetup_20260427/assets/screenshots/vscode-download.png",
     "Claude Code Lecture Preparation/outputs/CCFM_ClaudeCodeTerminalSetup_20260427/assets/screenshots/vscode-claude-terminal.png",
-    "Claude Code Lecture Preparation/outputs/CCFM_ClaudeCodeTerminalSetup_20260427/assets/screenshots/usage-03.png",
-    "Claude Code Lecture Preparation/outputs/CCFM_ClaudeCodeWorkshop_20260422/README.md",
-    "Claude Code Lecture Preparation/outputs/CCFM_ClaudeCodeTerminalSetup_20260427/README.md",
-    "Claude Code Lecture Preparation/docs/claude-design-bundle/ccfm-guide-remix/chats/chat2.md",
-    "Claude Code Lecture Preparation/docs/claude-design-bundle/ccfm-guide-remix/chats/chat1.md",
-    "Claude Code Lecture Preparation/docs/claude-design-bundle/ccfm-guide-remix/README.md"
+    "Claude Code Lecture Preparation/outputs/CCFM_ClaudeCodeTerminalSetup_20260427/assets/screenshots/usage-03.png"
   ]
 }
