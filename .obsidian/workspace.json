@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Clippings/앤트로픽 '미토스 쇼크'…AI가 해커가 됐다 1.md",
+                "file": "raw/inbox/yyyy05월_PAPER_LLM이란 무엇인가요 - 대규모 언어 모델 설명.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "앤트로픽 '미토스 쇼크'…AI가 해커가 됐다 1"
+              "title": "yyyy05월_PAPER_LLM이란 무엇인가요 - 대규모 언어 모델 설명"
             }
           }
         ]
@@ -110,7 +110,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Clippings/앤트로픽 '미토스 쇼크'…AI가 해커가 됐다 1.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -120,7 +119,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "앤트로픽 '미토스 쇼크'…AI가 해커가 됐다 1 의 백링크"
+              "title": "백링크"
             }
           },
           {
@@ -129,12 +128,11 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Clippings/앤트로픽 '미토스 쇼크'…AI가 해커가 됐다 1.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "앤트로픽 '미토스 쇼크'…AI가 해커가 됐다 1 의 나가는 링크"
+              "title": "나가는 링크"
             }
           },
           {
@@ -172,13 +170,12 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Clippings/앤트로픽 '미토스 쇼크'…AI가 해커가 됐다 1.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "앤트로픽 '미토스 쇼크'…AI가 해커가 됐다 1 의 개요"
+              "title": "개요"
             }
           }
         ]
@@ -200,8 +197,10 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "52bda6f187959339",
+  "active": "30d0bb958e9bf888",
   "lastOpenFiles": [
+    "raw/inbox/yyyy05월_PAPER_LLM이란 무엇인가요 - 대규모 언어 모델 설명.md",
+    "Clippings/앤트로픽 '미토스 쇼크'…AI가 해커가 됐다 1.md",
     "clipper-templates/README.md",
     "clipper-templates/05_리서치논문.json",
     "clipper-templates/05_리서치논문.json.tmp.6712.1777873769883",
@@ -219,7 +218,6 @@
     "wiki/CLAUDE.md",
     "raw/CLAUDE.md",
     "CLAUDE.md",
-    "Clippings/앤트로픽 '미토스 쇼크'…AI가 해커가 됐다 1.md",
     "Clippings/앤트로픽 '미토스 쇼크'…AI가 해커가 됐다.md",
     "환영합니다!.md",
     "Desktop/Code/reseller_project/reseller_code_v1_final/reseller_back/node_modules/word/README.md",
@@ -244,7 +242,6 @@
     "Desktop/promo_calculate-main/ccfm_투명.png",
     "Desktop/promo_calculate-main/ccfmlog.webp",
     "Claude Code Lecture Preparation/templates/troubleshooting.template.md",
-    "Claude Code Lecture Preparation/templates/install-guide.template.md",
     "Claude Code Lecture Preparation/outputs/CCFM_ClaudeCodeTerminalSetup_20260427/assets/screenshots/vscode-download.png",
     "Claude Code Lecture Preparation/outputs/CCFM_ClaudeCodeTerminalSetup_20260427/assets/screenshots/vscode-claude-terminal.png",
     "Claude Code Lecture Preparation/outputs/CCFM_ClaudeCodeTerminalSetup_20260427/assets/screenshots/usage-03.png"
